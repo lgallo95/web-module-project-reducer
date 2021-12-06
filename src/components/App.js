@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import reducer, {initialState} from '../reducers';
 import './App.css';
-import {addOne, applyNumber, applyOperation} from '../actions/index'
+import {addOne, applyNumber, applyOperation, applyClear} from '../actions/index'
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 
@@ -18,9 +18,11 @@ function App() {
 
   const handleApplyOperation = (x) =>{
     dispatch(applyOperation(x.target.value))
+  }  
+
+  const handleApplyClear = (x) =>{
+    dispatch(applyClear(x.target.value))
   }
-
-
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -68,7 +70,7 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton onClick={handleApplyClear} value={"CE"}/>
             </div>
 
           </form>
