@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import reducer, {initialState} from '../reducers';
 import './App.css';
-import {addOne, applyNumber, applyOperation, applyClear} from '../actions/index'
+import {addOne, applyNumber, applyOperation, applyClear, addToMemory, connectMemoryToTotal, clearAllMemory} from '../actions/index'
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 
@@ -23,6 +23,17 @@ function App() {
   const handleApplyClear = (x) =>{
     dispatch(applyClear(x.target.value))
   }
+
+  const handleAddToMemory = () => {
+    dispatch(addToMemory())
+  }
+  const handleConnectMemoryToTotal = () => {
+    dispatch(connectMemoryToTotal())
+  }
+  const handleClearAllMemory = () => {
+    dispatch(clearAllMemory())
+  }
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -40,9 +51,9 @@ function App() {
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton value={"M+"} onClick={handleAddToMemory}/>
+              <CalcButton value={"MR"} onClick={handleConnectMemoryToTotal}/>
+              <CalcButton value={"MC"} onClick={handleClearAllMemory}/>
             </div>
 
             <div className="row">
